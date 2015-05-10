@@ -8,27 +8,36 @@
 
 import UIKit
 
+/******************************
+        Delegate
+*******************************/
+
 protocol SJPastCollectionViewControllerDelegate: NSObjectProtocol {
     
     func didSelectIndex(index: Int)
 }
 
+/******************************
+        Collection View
+*******************************/
+
 class SJPastCollectionViewController: UIViewController {
 
+    // Reuse identifier
     private let reuseIdentifier = "Cell"
     
+    // Delegate Object
     weak var delegate: SJPastCollectionViewControllerDelegate?
     
+    // Collection View
     let collectionView = UICollectionView(frame: CGRectZero, collectionViewLayout: UICollectionViewFlowLayout())
-    
     var images = [UIImage]()
-    
     var currentIndex: Int = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        // Data Source
+        // Data Source & Delegate
         collectionView.dataSource = self
         collectionView.delegate = self
         
@@ -36,7 +45,6 @@ class SJPastCollectionViewController: UIViewController {
         collectionView.backgroundColor = UIColor.clearColor()
         
         // Add Subview
-        view.addSubview(collectionView)
         view.pinSubView(collectionView, top: 0, bottom: 0, left: 0, right: 0)
         
         // Layout
@@ -54,6 +62,7 @@ class SJPastCollectionViewController: UIViewController {
         collectionView.registerClass(SJPastCell.self, forCellWithReuseIdentifier: reuseIdentifier)
     }
     
+    // Reload the collection view
     func reload() {
         collectionView.reloadData()
         scrollToIndex(currentIndex, animated: false)

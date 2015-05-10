@@ -84,11 +84,8 @@
 			isa = PBXGroup;
 			children = (
 				1FCFC5A31AFEF64800D50EA9 /* Nav Controller */,
-				1FCFC5831AFEF63D00D50EA9 /* AppDelegate.swift */,
 				1FCFC5851AFEF63D00D50EA9 /* ViewController.swift */,
 				1FCFC5871AFEF63D00D50EA9 /* Main.storyboard */,
-				1FCFC58A1AFEF63D00D50EA9 /* Images.xcassets */,
-				1FCFC58C1AFEF63D00D50EA9 /* LaunchScreen.xib */,
 				1FCFC5811AFEF63D00D50EA9 /* Supporting Files */,
 			);
 			path = SJPastNavigationController;
@@ -97,6 +94,9 @@
 		1FCFC5811AFEF63D00D50EA9 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				1FCFC5831AFEF63D00D50EA9 /* AppDelegate.swift */,
+				1FCFC58A1AFEF63D00D50EA9 /* Images.xcassets */,
+				1FCFC58C1AFEF63D00D50EA9 /* LaunchScreen.xib */,
 				1FCFC5821AFEF63D00D50EA9 /* Info.plist */,
 			);
 			name = "Supporting Files";

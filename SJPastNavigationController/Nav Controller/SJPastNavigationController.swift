@@ -78,21 +78,17 @@ class SJPastNavigationController: UINavigationController {
             }
         }
         
-        var removeList = [Bool]()
+        var count = 0
         for (currentIndex, image) in enumerate(viewControllersSnap) {
             if currentIndex >= index {
-                removeList += [true]
-            } else {
-                removeList += [false]
+                count++
             }
         }
-        for (currentIndex, shouldRemove) in enumerate(removeList) {
-            if shouldRemove {
-                if let index = index {
-                    viewControllersSnap.removeAtIndex(index)
-                }
-            }
+        
+        for i in 0..<count {
+            viewControllersSnap.removeLast()
         }
+        
         return super.popToViewController(viewController, animated: animated)
     }
     
@@ -150,7 +146,7 @@ extension SJPastNavigationController: UIGestureRecognizerDelegate {
             backgroundView.hidden = false
             
             setNavigationBarHidden(true, animated: false)
-            UIView.animateWithDuration(0.5, animations: { [unowned self] in
+            UIView.animateWithDuration(0.2, animations: { [unowned self] in
                 self.collectionVC.view.transform = CGAffineTransformMakeScale(0.7, 0.7)
             })
         }
@@ -177,18 +173,17 @@ extension SJPastNavigationController: SJPastCollectionViewControllerDelegate {
                 popToViewController(viewController, animated: false)
             }
             
-            
-            UIView.animateWithDuration(0.25, delay: 0.0, options: .CurveEaseOut, animations: {
+            UIView.animateWithDuration(0.25, delay: 0.0, options: .CurveEaseOut, animations:
+            { [unowned self] in
                 self.collectionVC.view.transform = CGAffineTransformIdentity
                 self.collectionVC.scrollToIndex(index, animated: false)
-                }) { (finished) in
-                    self.backgroundView.hidden = true
-                    self.collectionVC.view.alpha = 0.0
-                    self.setNavigationBarHidden(false, animated: false)
+                
+            }) { (finished) in
+                self.backgroundView.hidden = true
+                self.collectionVC.view.alpha = 0.0
+                self.setNavigationBarHidden(false, animated: false)
             }
         }
-
     }
-    
 }
 
