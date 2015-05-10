@@ -13,6 +13,9 @@
 		1FCFC58B1AFEF63D00D50EA9 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1FCFC58A1AFEF63D00D50EA9 /* Images.xcassets */; };
 		1FCFC58E1AFEF63D00D50EA9 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1FCFC58C1AFEF63D00D50EA9 /* LaunchScreen.xib */; };
 		1FCFC59A1AFEF63D00D50EA9 /* SJPastNavigationControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FCFC5991AFEF63D00D50EA9 /* SJPastNavigationControllerTests.swift */; };
+		1FCFC5A51AFEF67500D50EA9 /* SJPastNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FCFC5A41AFEF67500D50EA9 /* SJPastNavigationController.swift */; };
+		1FCFC5A71AFEFD8F00D50EA9 /* SJPastCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FCFC5A61AFEFD8F00D50EA9 /* SJPastCollectionViewController.swift */; };
+		1FCFC5AD1AFF1FDA00D50EA9 /* SJExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FCFC5AC1AFF1FDA00D50EA9 /* SJExtensions.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -36,6 +39,9 @@
 		1FCFC5931AFEF63D00D50EA9 /* SJPastNavigationControllerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SJPastNavigationControllerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		1FCFC5981AFEF63D00D50EA9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1FCFC5991AFEF63D00D50EA9 /* SJPastNavigationControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SJPastNavigationControllerTests.swift; sourceTree = "<group>"; };
+		1FCFC5A41AFEF67500D50EA9 /* SJPastNavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SJPastNavigationController.swift; path = "Nav Controller/SJPastNavigationController.swift"; sourceTree = "<group>"; };
+		1FCFC5A61AFEFD8F00D50EA9 /* SJPastCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SJPastCollectionViewController.swift; path = "Nav Controller/SJPastCollectionViewController.swift"; sourceTree = "<group>"; };
+		1FCFC5AC1AFF1FDA00D50EA9 /* SJExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SJExtensions.swift; path = "Nav Controller/SJExtensions.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -77,6 +83,7 @@
 		1FCFC5801AFEF63D00D50EA9 /* SJPastNavigationController */ = {
 			isa = PBXGroup;
 			children = (
+				1FCFC5A31AFEF64800D50EA9 /* Nav Controller */,
 				1FCFC5831AFEF63D00D50EA9 /* AppDelegate.swift */,
 				1FCFC5851AFEF63D00D50EA9 /* ViewController.swift */,
 				1FCFC5871AFEF63D00D50EA9 /* Main.storyboard */,
@@ -110,6 +117,16 @@
 				1FCFC5981AFEF63D00D50EA9 /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		1FCFC5A31AFEF64800D50EA9 /* Nav Controller */ = {
+			isa = PBXGroup;
+			children = (
+				1FCFC5A41AFEF67500D50EA9 /* SJPastNavigationController.swift */,
+				1FCFC5A61AFEFD8F00D50EA9 /* SJPastCollectionViewController.swift */,
+				1FCFC5AC1AFF1FDA00D50EA9 /* SJExtensions.swift */,
+			);
+			name = "Nav Controller";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -212,8 +229,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1FCFC5A51AFEF67500D50EA9 /* SJPastNavigationController.swift in Sources */,
 				1FCFC5861AFEF63D00D50EA9 /* ViewController.swift in Sources */,
+				1FCFC5AD1AFF1FDA00D50EA9 /* SJExtensions.swift in Sources */,
 				1FCFC5841AFEF63D00D50EA9 /* AppDelegate.swift in Sources */,
+				1FCFC5A71AFEFD8F00D50EA9 /* SJPastCollectionViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
