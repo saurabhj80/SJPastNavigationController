@@ -44,18 +44,26 @@ class SJPastCollectionViewController: UIViewController {
         // background Color
         collectionView.backgroundColor = UIColor.clearColor()
         
-        // Add Subview
-        view.pinSubView(collectionView, top: 0, bottom: 0, left: 0, right: 0)
-        
         // Layout
         let size = UIScreen.mainScreen().bounds.size
         if let layout = collectionView.collectionViewLayout as? UICollectionViewFlowLayout {
+            
+//            let width = size.width - layout.sectionInset.left - layout.sectionInset.right
+//            let height = size.height - layout.sectionInset.top - layout.sectionInset.bottom
+//            
+//            let newSize = CGSize(width: width, height: height)
+            
             layout.itemSize = size
             layout.minimumInteritemSpacing = 0.0
             layout.minimumLineSpacing = 20.0
             layout.sectionInset = UIEdgeInsets(top: 0.0, left: size.width, bottom: 0.0, right: size.width)
             layout.scrollDirection = .Horizontal
+            layout.invalidateLayout()
         }
+        
+        // Add Subview
+        view.pinSubView(collectionView, top: 0, bottom: 0, left: 0, right: 0)
+        
         collectionView.showsHorizontalScrollIndicator = false
         
         // Register cell classes

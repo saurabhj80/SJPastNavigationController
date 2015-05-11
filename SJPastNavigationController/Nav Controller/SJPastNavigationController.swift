@@ -22,7 +22,6 @@ class SJPastNavigationController: UINavigationController {
     // Background View
     private var backgroundView = UIView()
 
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -35,11 +34,6 @@ class SJPastNavigationController: UINavigationController {
         
         // Set the collection view controller
         collectionVC.delegate = self
-        let width = Float(UIScreen.mainScreen().bounds.size.width)
-        NSLayoutConstraint.applyAutoLayout(view, target: collectionVC.view, top: 0, left: -width, right: -width, bottom: 0, height: nil, width: 3*width)
-        
-        // Hide it
-        collectionVC.view.alpha = 0.0
         
         // The long press recognizer
         sj_longPress = UILongPressGestureRecognizer(target: self, action: "handleLongPress:")
@@ -114,11 +108,8 @@ class SJPastNavigationController: UINavigationController {
 // MARK: Gesture handling
 extension SJPastNavigationController: UIGestureRecognizerDelegate {
     
-    // Gesture delegate
     func gestureRecognizerShouldBegin(gestureRecognizer: UIGestureRecognizer) -> Bool {
-        
         if let back = visibleViewController.navigationController?.navigationBar.backItem {
-            
             let frame = CGRectMake(0, 0, 100, 50)
             let point = gestureRecognizer.locationInView(gestureRecognizer.view)
             if CGRectContainsPoint(frame, point) {
@@ -134,19 +125,42 @@ extension SJPastNavigationController: UIGestureRecognizerDelegate {
         
         if longPress.state == .Began {
             
+            // Hide it
+            collectionVC.view.alpha = 0
+            
+            // Add as a child view controller - Causing troubles
+            //addChildViewController(collectionVC)
+            
+            // Add as subview
+            let width = Float(UIScreen.mainScreen().bounds.size.width)
+            NSLayoutConstraint.applyAutoLayout(view, target: collectionVC.view, top: 0, left: -width, right: -width, bottom: 0, height: nil, width: 3*width)
+            
+            // Did move to parent view controller
+            //collectionVC.didMoveToParentViewController(self)
+            
+            // Click a snap
             if let image = topViewController.snapshotView() {
                 viewControllersSnap.append(image)
             }
             
+            // Set the images
             collectionVC.images = viewControllersSnap
+            
+            // Set the Index
             collectionVC.currentIndex = viewControllersSnap.count - 1
+            
+            // Reload the collection view
             collectionVC.reload()
-            collectionVC.view.alpha = 1
+
+            // Show the view
+            self.collectionVC.view.alpha = 1
             
-            backgroundView.hidden = false
-            
+            // hide the navigation bar
             setNavigationBarHidden(true, animated: false)
+            
+            // Animate the collection view
             UIView.animateWithDuration(0.2, animations: { [unowned self] in
+                self.backgroundView.hidden = false
                 self.collectionVC.view.transform = CGAffineTransformMakeScale(0.7, 0.7)
             })
         }
@@ -173,15 +187,19 @@ extension SJPastNavigationController: SJPastCollectionViewControllerDelegate {
                 popToViewController(viewController, animated: false)
             }
             
-            UIView.animateWithDuration(0.25, delay: 0.0, options: .CurveEaseOut, animations:
+            UIView.animateWithDuration(0.25, delay: 0.0, options: .CurveLinear, animations:
             { [unowned self] in
-                self.collectionVC.view.transform = CGAffineTransformIdentity
-                self.collectionVC.scrollToIndex(index, animated: false)
-                
-            }) { (finished) in
-                self.backgroundView.hidden = true
-                self.collectionVC.view.alpha = 0.0
-                self.setNavigationBarHidden(false, animated: false)
+                self.collectionVC.scrollToIndex(index, animated: true)
+            }) { [unowned self] (finished) in
+                UIView.animateWithDuration(0.25, animations: { () -> Void in
+                    self.collectionVC.view.transform = CGAffineTransformIdentity
+                }, completion: { (finished) -> Void in
+                    //self.collectionVC.willMoveToParentViewController(nil)
+                    self.collectionVC.view.removeFromSuperview()
+                    //self.collectionVC.removeFromParentViewController()
+                    self.backgroundView.hidden = true
+                    self.setNavigationBarHidden(false, animated: false)
+                })
             }
         }
     }
